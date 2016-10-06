@@ -1,14 +1,13 @@
 // TODO DONE: Wrap the entire contents of this file in an IIFE.
 // Pass in to the IIFE a module, upon which objects can be attached for later access.
-(function (module) {
-
-function Article (opts) {
-  this.author = opts.author;
-  this.authorUrl = opts.authorUrl;
-  this.title = opts.title;
-  this.category = opts.category;
-  this.body = opts.body;
-  this.publishedOn = opts.publishedOn;
+(function(module){
+  function Article (opts) {
+    this.author = opts.author;
+    this.authorUrl = opts.authorUrl;
+    this.title = opts.title;
+    this.category = opts.category;
+    this.body = opts.body;
+    this.publishedOn = opts.publishedOn;
 }
 
 Article.all = [];
@@ -51,7 +50,7 @@ Article.fetchAll = function(callback) {
     Article.loadAll(JSON.parse(localStorage.rawData));
     callback();
   } else {
-    $.getJSON('/data/hackerIpsum.json', function(rawData) {
+    $.getJSON('data/hackerIpsum.json', function(rawData) {
       Article.loadAll(rawData);
       localStorage.rawData = JSON.stringify(rawData); // Cache the json, so we don't need to request it next time.
       callback();
